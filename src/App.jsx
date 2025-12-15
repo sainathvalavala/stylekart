@@ -1,8 +1,7 @@
 import React from "react";
-import Products from "./features/products/Products";
 import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
-
+import Slider from "./pages/Slider";
 function App() {
   return (
     <div>
