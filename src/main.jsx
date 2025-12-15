@@ -6,8 +6,8 @@ import { store } from "./app/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Products from "./features/products/Products.jsx";
 import Men from "./features/men/Men.jsx";
+import Home from "./layout/Home.jsx";
 
-import Slider from "./pages/Slider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       {
         //When user visits "/:" <App /> renders <Slider /> renders inside <Outlet />
         index: true,
-        element: <Slider />,
+        element: <Home />,
       },
       {
         path: "products",
