@@ -1,9 +1,37 @@
-import React from "react";
+
+import React, { useMemo, useState } from "react";
 import { useGetAllProductsQuery } from "../../services/productsApi";
 import ProductCard from "./ProductCard";
+import FilterSidebar from "../filter/FilterSidebar";
 
 function Products() {
   const { isLoading, data } = useGetAllProductsQuery();
+//filter logic 
+  const [filters, setFilters] = useState({
+    brands: [],
+    categories: [],
+    price: null,
+  });
+
+  const filteredProducts = useMemo(() => {
+    if (!data) return [];
+
+    return data.filter((p) => {
+      const brandMatch =
+        filters.brands.length === 0 ||
+        filters.brands.includes(p.BrandName);
+
+      const categoryMatch =
+        filters.categories.length === 0 ||
+        filters.categories.includes(p.Individual_category);
+
+      const priceMatch =
+        !filters.price ||
+        Number(p["DiscountPrice (in Rs)"]) <= filters.price;
+
+      return brandMatch && categoryMatch && priceMatch;
+    });
+  }, [data, filters]);
 
   if (isLoading) {
     return (
@@ -17,19 +45,66 @@ function Products() {
     <div className="px-6 md:px-12 py-8 bg-gray-50">
       <h2 className="text-xl font-semibold mb-6">Products</h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        {data?.map((product) => (
+      <div className="grid grid-cols-12 gap-6">
+        {/* LEFT FILTER */}
+        <div className="col-span-12 md:col-span-3 lg:col-span-2">
+          <FilterSidebar products={data} filters={filters} setFilters={setFilters} />
+        </div>
 
-          //refactoring
-          
-          <ProductCard key={product.Product_id} product={product} />
-        ))}
+        {/* RIGHT PRODUCTS */}
+        <div className="col-span-12 md:col-span-9 lg:col-span-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.Product_id}
+                product={product}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
 export default Products;
+
+
+
+//-----------main code 
+// import React from "react";
+// import { useGetAllProductsQuery } from "../../services/productsApi";
+// import ProductCard from "./ProductCard";
+
+// function Products() {
+//   const { isLoading, data } = useGetAllProductsQuery();
+
+//   if (isLoading) {
+//     return (
+//       <div className="flex justify-center items-center h-[60vh]">
+//         <h2 className="text-lg font-semibold">Loading...</h2>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="px-6 md:px-12 py-8 bg-gray-50">
+//       <h2 className="text-xl font-semibold mb-6">Products</h2>
+
+//       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+//         {data?.map((product) => (
+
+//           //refactoring
+          
+//           <ProductCard key={product.Product_id} product={product} />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Products;
+// ------------main code 
 
 // import React from "react";
 // import { useGetAllProductsQuery } from "../../services/productsApi";
