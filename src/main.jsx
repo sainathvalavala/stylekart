@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Products from "./features/products/Products.jsx";
 import Men from "./features/men/Men.jsx";
 import Home from "./layout/Home.jsx";
+import Women from "./features/women/Women.jsx";
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "men",
         element: <Men />,
+      },
+      {
+        path: "women",
+        element: <Women />,
       },
     ],
   },

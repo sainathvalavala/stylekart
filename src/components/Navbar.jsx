@@ -1,56 +1,4 @@
-// import React from "react";
-// import { Link, NavLink } from "react-router-dom";
 
-// function Navbar() {
-//   return (
-//     <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
-//       <div className="max-w-7xl mx-auto px-6">
-//         <div className="flex items-center h-20 gap-10">
-//           {/* Logo */}
-//           <Link
-//             to="/"
-//             className="text-2xl font-bold tracking-wide text-pink-600"
-//           >
-//             MYNTRA
-//           </Link>
-
-//           {/* Nav Links */}
-//           <ul className="flex items-center gap-8 text-sm font-semibold uppercase text-gray-800">
-//             <li>
-//               <NavLink
-//                 to="/"
-//                 className={({ isActive }) =>
-//                   `relative pb-2 ${
-//                     isActive ? "text-pink-600" : "hover:text-pink-600"
-//                   }`
-//                 }
-//               >
-//                 Home
-//                 <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-pink-600 scale-x-0 hover:scale-x-100 transition-transform origin-left"></span>
-//               </NavLink>
-//             </li>
-
-//             <li>
-//               <NavLink
-//                 to="/products"
-//                 className={({ isActive }) =>
-//                   `relative pb-2 ${
-//                     isActive ? "text-pink-600" : "hover:text-pink-600"
-//                   }`
-//                 }
-//               >
-//                 Products
-//                 <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-pink-600 scale-x-0 hover:scale-x-100 transition-transform origin-left"></span>
-//               </NavLink>
-//             </li>
-//           </ul>
-//         </div>
-//       </div>
-//     </nav>
-//   );
-// }
-
-// export default Navbar;
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { User, Heart, ShoppingBag } from "lucide-react";
@@ -120,3 +68,69 @@ function NavIcon({ icon, label }) {
 
 export default Navbar;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from "react";
+// import { Link, NavLink } from "react-router-dom";
+
+// function Navbar() {
+//   return (
+//     <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
+//       <div className="max-w-7xl mx-auto px-6">
+//         <div className="flex items-center h-20 gap-10">
+//           {/* Logo */}
+//           <Link
+//             to="/"
+//             className="text-2xl font-bold tracking-wide text-pink-600"
+//           >
+//             MYNTRA
+//           </Link>
+
+//           {/* Nav Links */}
+//           <ul className="flex items-center gap-8 text-sm font-semibold uppercase text-gray-800">
+//             <li>
+//               <NavLink
+//                 to="/"
+//                 className={({ isActive }) =>
+//                   `relative pb-2 ${
+//                     isActive ? "text-pink-600" : "hover:text-pink-600"
+//                   }`
+//                 }
+//               >
+//                 Home
+//                 <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-pink-600 scale-x-0 hover:scale-x-100 transition-transform origin-left"></span>
+//               </NavLink>
+//             </li>
+
+//             <li>
+//               <NavLink
+//                 to="/products"
+//                 className={({ isActive }) =>
+//                   `relative pb-2 ${
+//                     isActive ? "text-pink-600" : "hover:text-pink-600"
+//                   }`
+//                 }
+//               >
+//                 Products
+//                 <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-pink-600 scale-x-0 hover:scale-x-100 transition-transform origin-left"></span>
+//               </NavLink>
+//             </li>
+//           </ul>
+//         </div>
+//       </div>
+//     </nav>
+//   );
+// }
+
+// export default Navbar;
