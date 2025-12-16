@@ -1,12 +1,12 @@
-
 import React, { useMemo, useState } from "react";
 import { useGetAllProductsQuery } from "../../services/productsApi";
+import { Loader2 } from "lucide-react";
 import ProductCard from "./ProductCard";
 import FilterSidebar from "../filter/FilterSidebar";
 
 function Products() {
   const { isLoading, data } = useGetAllProductsQuery();
-//filter logic 
+  //filter logic
   const [filters, setFilters] = useState({
     brands: [],
     categories: [],
@@ -18,16 +18,14 @@ function Products() {
 
     return data.filter((p) => {
       const brandMatch =
-        filters.brands.length === 0 ||
-        filters.brands.includes(p.BrandName);
+        filters.brands.length === 0 || filters.brands.includes(p.BrandName);
 
       const categoryMatch =
         filters.categories.length === 0 ||
         filters.categories.includes(p.Individual_category);
 
       const priceMatch =
-        !filters.price ||
-        Number(p["DiscountPrice (in Rs)"]) <= filters.price;
+        !filters.price || Number(p["DiscountPrice (in Rs)"]) <= filters.price;
 
       return brandMatch && categoryMatch && priceMatch;
     });
@@ -35,8 +33,12 @@ function Products() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[60vh]">
-        <h2 className="text-lg font-semibold">Loading...</h2>
+      // <div className="flex justify-center items-center h-[60vh]">
+      //   <h2 className="text-lg font-semibold">Loading...</h2>
+      // </div>
+      //added loader using lucide react 
+      <div className="flex items-center justify-center h-[60vh]">
+        <Loader2 className="w-10 h-10 text-pink-600 animate-spin" />
       </div>
     );
   }
@@ -48,17 +50,18 @@ function Products() {
       <div className="grid grid-cols-12 gap-6">
         {/* LEFT FILTER */}
         <div className="col-span-12 md:col-span-3 lg:col-span-2">
-          <FilterSidebar products={data} filters={filters} setFilters={setFilters} />
+          <FilterSidebar
+            products={data}
+            filters={filters}
+            setFilters={setFilters}
+          />
         </div>
 
         {/* RIGHT PRODUCTS */}
         <div className="col-span-12 md:col-span-9 lg:col-span-10">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.Product_id}
-                product={product}
-              />
+              <ProductCard key={product.Product_id} product={product} />
             ))}
           </div>
         </div>
@@ -69,9 +72,7 @@ function Products() {
 
 export default Products;
 
-
-
-//-----------main code 
+//-----------main code
 // import React from "react";
 // import { useGetAllProductsQuery } from "../../services/productsApi";
 // import ProductCard from "./ProductCard";
@@ -95,7 +96,7 @@ export default Products;
 //         {data?.map((product) => (
 
 //           //refactoring
-          
+
 //           <ProductCard key={product.Product_id} product={product} />
 //         ))}
 //       </div>
@@ -104,7 +105,7 @@ export default Products;
 // }
 
 // export default Products;
-// ------------main code 
+// ------------main code
 
 // import React from "react";
 // import { useGetAllProductsQuery } from "../../services/productsApi";

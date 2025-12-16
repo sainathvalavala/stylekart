@@ -8,6 +8,8 @@ import Products from "./features/products/Products.jsx";
 import Men from "./features/men/Men.jsx";
 import Home from "./layout/Home.jsx";
 import Women from "./features/women/Women.jsx";
+import Cart from "./features/cart/Cart.jsx";
+import Order from "./components/Order.jsx";
 
 
 const router = createBrowserRouter([
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "women",
         element: <Women />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "order",
+        element: <Order/>,
       },
     ],
   },

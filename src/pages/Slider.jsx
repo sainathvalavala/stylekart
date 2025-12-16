@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGetHomePageQuery } from "../services/HomePageApi/HomePageApi";
-
+import { Loader2 } from "lucide-react";
 function Slider() {
   const { isLoading, data } = useGetHomePageQuery();
   const [index, setIndex] = useState(0);
@@ -20,8 +20,11 @@ function Slider() {
 
   if (isLoading) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        <h2 className="text-xl">Loading...</h2>
+      // <div className="h-screen flex items-center justify-center">
+      //   <h2 className="text-xl">Loading...</h2>
+      // </div>
+      <div className="flex items-center justify-center h-[60vh]">
+        <Loader2 className="w-10 h-10 text-pink-600 animate-spin" />
       </div>
     );
   }

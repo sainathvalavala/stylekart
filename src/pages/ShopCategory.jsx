@@ -1,12 +1,17 @@
 import React from "react";
 import { useGetHomePageQuery } from "../services/HomePageApi/HomePageApi";
+import { Loader2 } from "lucide-react";
 
 function ShopCategory() {
   const { isLoading, data } = useGetHomePageQuery();
   const shopCategory = data?.shopCategory || {};
 
   if (isLoading) {
-    return <h2 className="text-center text-xl">Loading...</h2>;
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <Loader2 className="w-10 h-10 text-pink-600 animate-spin" />
+      </div>
+    );
   }
 
   return (

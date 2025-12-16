@@ -1,6 +1,6 @@
-
 import React, { useMemo, useState } from "react";
 import { useGetAllProductsQuery } from "../../services/productsApi";
+import { Loader2 } from "lucide-react";
 import ProductCard from "../products/ProductCard";
 import FilterSidebar from "../filter/FilterSidebar";
 
@@ -13,7 +13,6 @@ function Men() {
     price: null,
   });
 
-
   //  Only MEN products
   const menProducts = data?.filter(
     (product) => product.category_by_Gender === "Men"
@@ -25,16 +24,14 @@ function Men() {
 
     return menProducts.filter((p) => {
       const brandMatch =
-        filters.brands.length === 0 ||
-        filters.brands.includes(p.BrandName);
+        filters.brands.length === 0 || filters.brands.includes(p.BrandName);
 
       const categoryMatch =
         filters.categories.length === 0 ||
         filters.categories.includes(p.Individual_category);
 
       const priceMatch =
-        !filters.price ||
-        Number(p["DiscountPrice (in Rs)"]) <= filters.price;
+        !filters.price || Number(p["DiscountPrice (in Rs)"]) <= filters.price;
 
       return brandMatch && categoryMatch && priceMatch;
     });
@@ -42,7 +39,11 @@ function Men() {
 
   //  Conditional return comes AFTER hooks
   if (isLoading) {
-    return <h2 className="text-center mt-10">Loading...</h2>;
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <Loader2 className="w-10 h-10 text-pink-600 animate-spin" />
+      </div>
+    );
   }
 
   return (
@@ -63,10 +64,7 @@ function Men() {
         <div className="col-span-12 md:col-span-9 lg:col-span-10">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {filteredMenProducts.map((item) => (
-              <ProductCard
-                key={item.Product_id}
-                product={item}
-              />
+              <ProductCard key={item.Product_id} product={item} />
             ))}
           </div>
         </div>
@@ -76,49 +74,6 @@ function Men() {
 }
 
 export default Men;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React from "react";
 // import { useGetAllProductsQuery } from "../../services/productsApi";
@@ -145,14 +100,14 @@ export default Men;
 //       </div>
 //     </div>
 
-    // <div>
-    //   <ul>
-    //     {menProducts?.map((menProduct) => (
+// <div>
+//   <ul>
+//     {menProducts?.map((menProduct) => (
 
-    //       <MenCard key={menProduct.Product_id} menProduct={menProduct}/>
-    //     ))}
-    //   </ul>
-    // </div>
+//       <MenCard key={menProduct.Product_id} menProduct={menProduct}/>
+//     ))}
+//   </ul>
+// </div>
 //   );
 // }
 
