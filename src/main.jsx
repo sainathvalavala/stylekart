@@ -10,6 +10,8 @@ import Home from "./layout/Home.jsx";
 import Women from "./features/women/Women.jsx";
 import Cart from "./features/cart/Cart.jsx";
 import Order from "./components/Order.jsx";
+import Kids from "./features/kids/Kids.jsx";
+import BeautyProducts from "./features/beautyProducts/BeautyProducts.jsx";
 
 
 const router = createBrowserRouter([
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
       {
         path: "order",
         element: <Order/>,
+      },
+      {
+        path: "kids",
+        element: <Kids/>,
+      },
+      {
+        path: "beauty",
+        element: <BeautyProducts/>,
       },
     ],
   },
