@@ -21,7 +21,7 @@ import { motion, AnimatePresence } from "framer-motion";
    addToCart   : cart reducer action
 ===================================================== */
 import { useDispatch } from "react-redux";
-import { addToCart } from "../cart/cartSlice";
+import { addToCart } from "../../features/cart/cartSlice"
 
 /* =====================================================
    Toast Notifications

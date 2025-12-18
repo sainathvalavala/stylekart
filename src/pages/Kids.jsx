@@ -1,9 +1,9 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Loader2, SlidersHorizontal } from "lucide-react";
-import ProductCard from "../products/ProductCard";
-import KidsFilterSidebar from "./KidsFilterSidebar";
-import MobileFilterDrawer from "../../components/MobileFilterDrawer";
-import { useGetAllClothesQuery } from "../../services/kidsApi/KidsApi";
+import ProductCard from "../components/products/ProductCard"
+import KidsFilterSidebar from "../components/filters/KidsFilterSidebar";
+import MobileFilterDrawer from "../components/filters/MobileFilterDrawer"
+import { useGetAllClothesQuery } from "../services/kidsApi/KidsApi";
 
 function Kids() {
   const { isLoading, data } = useGetAllClothesQuery();

@@ -4,16 +4,16 @@ import App from "./App.jsx";
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Products from "./features/products/Products.jsx";
-import Men from "./features/men/Men.jsx";
-import Women from "./features/women/Women.jsx";
-import Cart from "./features/cart/Cart.jsx";
-import Order from "./pages/Order.jsx";
-import Kids from "./features/kids/Kids.jsx";
-import BeautyProducts from "./features/beautyProducts/BeautyProducts.jsx";
-import HomePage from "./layout/HomePage.jsx";
-import Wishlist from "./features/wishlist/Wishlist.jsx";
 
+import Men from "./pages/Men.jsx";
+import Women from "./pages/Women.jsx";
+import Cart from "./pages/Cart.jsx";
+import Order from "./pages/Order.jsx";
+import Kids from "./pages/Kids.jsx";
+import BeautyProducts from "./pages/BeautyProducts.jsx";
+import HomePage from "./pages/Home.jsx";
+import Wishlist from "./pages/wishlist.jsx";
+import Products from "./components/products/Products.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,19 +43,19 @@ const router = createBrowserRouter([
       },
       {
         path: "wishlist",
-        element: <Wishlist/>,
+        element: <Wishlist />,
       },
       {
         path: "order",
-        element: <Order/>,
+        element: <Order />,
       },
       {
         path: "kids",
-        element: <Kids/>,
+        element: <Kids />,
       },
       {
         path: "beauty",
-        element: <BeautyProducts/>,
+        element: <BeautyProducts />,
       },
     ],
   },

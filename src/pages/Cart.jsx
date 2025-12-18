@@ -165,7 +165,7 @@
 // export default Cart;
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart, updateQuantity } from "./cartSlice";
+import { removeFromCart, updateQuantity } from "../features/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 

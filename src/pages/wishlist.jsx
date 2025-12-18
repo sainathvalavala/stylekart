@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import ProductCard from "../products/ProductCard";
+import ProductCard from "../components/products/ProductCard";
 
 function Wishlist() {
   const items = useSelector((state) => state.wishlist.items);
 
-  console.log("Wishlist page items:", items);
+  // console.log("Wishlist page items:", items);
 
   if (!items || items.length === 0) {
     return (

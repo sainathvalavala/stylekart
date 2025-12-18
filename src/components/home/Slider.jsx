@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useGetHomePageQuery } from "../services/HomePageApi/HomePageApi";
+import { useGetHomePageQuery } from "../../services/homePageApi/homePageApi";
 import { Loader2 } from "lucide-react";
 
 function Slider() {

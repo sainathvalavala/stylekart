@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetHomePageQuery } from "../services/HomePageApi/HomePageApi";
+import { useGetHomePageQuery } from "../../services/homePageApi/homePageApi";
 import { Loader2 } from "lucide-react";
 
 function ShopCategory() {
@@ -58,6 +58,5 @@ function ShopCategory() {
     </section>
   );
 }
-
 
 export default ShopCategory;

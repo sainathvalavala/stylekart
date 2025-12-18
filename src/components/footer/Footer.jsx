@@ -1,6 +1,6 @@
 import React from "react";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
-import { useGetHomePageQuery } from "../services/HomePageApi/HomePageApi";
+import { useGetHomePageQuery } from "../../services/homePageApi/homePageApi";
 
 function Footer() {
   let { data } = useGetHomePageQuery();

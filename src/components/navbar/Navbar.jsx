@@ -32,7 +32,7 @@ function Navbar() {
 
             {/* Categories (desktop only) */}
             <ul className="hidden md:flex items-center gap-8 text-sm font-semibold uppercase text-gray-800">
-              {["men", "women", "kids", "products", "beauty"].map((item) => (
+              {["men", "women", "men & women","kids", "beauty"].map((item) => (
                 <li key={item} className="relative group">
                   <NavLink
                     to={`/${item}`}

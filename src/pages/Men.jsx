@@ -1,15 +1,19 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { useGetAllProductsQuery } from "../../services/ProductsApi/productsApi";
+import { useGetAllProductsQuery } from "../services/productsApi/productsApi";
 import { Loader2, SlidersHorizontal } from "lucide-react";
-import ProductCard from "./ProductCard";
-import FilterSidebar from "../filter/FilterSidebar";
-import MobileFilterDrawer from "../../components/MobileFilterDrawer";
+import ProductCard from "../components/products/ProductCard";
+import FilterSidebar from "../components/filters/FilterSidebar";
+import MobileFilterDrawer from "../components/filters/MobileFilterDrawer";
 
-function Products() {
+function Men() {
+  /* =======================
+     FETCH ALL PRODUCTS
+  ======================= */
   const { isLoading, data } = useGetAllProductsQuery();
 
   /* =======================
      FILTER STATE
+     (shared by desktop + mobile)
   ======================= */
   const [filters, setFilters] = useState({
     brands: [],
@@ -17,17 +21,17 @@ function Products() {
     price: null,
   });
 
+  /* =======================
+     MOBILE FILTER DRAWER STATE
+  ======================= */
   const [openFilter, setOpenFilter] = useState(false);
 
   /* =======================
-     LOCK BODY SCROLL (MOBILE FILTER)
+     LOCK BODY SCROLL
+     When mobile filter is open
   ======================= */
   useEffect(() => {
-    if (openFilter) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = openFilter ? "hidden" : "auto";
 
     return () => {
       document.body.style.overflow = "auto";
@@ -35,27 +39,32 @@ function Products() {
   }, [openFilter]);
 
   /* =======================
-     FILTER LOGIC
+     ONLY MEN PRODUCTS
   ======================= */
-  const filteredProducts = useMemo(() => {
-    if (!data) return [];
+  const menProducts = useMemo(() => {
+    return (
+      data?.filter((product) => product.category_by_Gender === "Men") || []
+    );
+  }, [data]);
 
-    return data.filter((p) => {
+  /* =======================
+     APPLY FILTERS ON MEN PRODUCTS
+  ======================= */
+  const filteredMenProducts = useMemo(() => {
+    return menProducts.filter((p) => {
       const brandMatch =
-        filters.brands.length === 0 ||
-        filters.brands.includes(p.BrandName);
+        filters.brands.length === 0 || filters.brands.includes(p.BrandName);
 
       const categoryMatch =
         filters.categories.length === 0 ||
         filters.categories.includes(p.Individual_category);
 
       const priceMatch =
-        !filters.price ||
-        Number(p["DiscountPrice (in Rs)"]) <= filters.price;
+        !filters.price || Number(p["DiscountPrice (in Rs)"]) <= filters.price;
 
       return brandMatch && categoryMatch && priceMatch;
     });
-  }, [data, filters]);
+  }, [menProducts, filters]);
 
   /* =======================
      LOADING STATE
@@ -69,13 +78,16 @@ function Products() {
   }
 
   /* =======================
-     RENDER
+     RENDER UI
   ======================= */
   return (
-    <div className="px-4 md:px-12 py-6 bg-gray-50">
-      <h2 className="text-xl font-semibold mb-4">Products</h2>
+    <div className="px-4 md:px-12 bg-gray-50">
+      <h2 className="text-xl font-semibold mb-1">Men</h2>
 
-      {/* MOBILE FILTER BUTTON */}
+      {/* =======================
+          MOBILE FILTER BUTTON
+          (VISIBLE ONLY ON MOBILE)
+      ======================= */}
       <div className="flex justify-end mb-4 md:hidden">
         <button
           onClick={() => setOpenFilter(true)}
@@ -89,35 +101,41 @@ function Products() {
       </div>
 
       <div className="grid grid-cols-12 gap-6">
-        {/* DESKTOP FILTER SIDEBAR */}
+        {/* =======================
+            DESKTOP FILTER SIDEBAR
+            - hidden on mobile
+            - visible from md+
+        ======================= */}
         <div className="hidden md:block md:col-span-3 lg:col-span-2">
           <FilterSidebar
-            products={data}
+            products={menProducts}
             filters={filters}
             setFilters={setFilters}
           />
         </div>
 
-        {/* PRODUCTS GRID */}
+        {/* =======================
+            PRODUCTS GRID
+        ======================= */}
         <div className="col-span-12 md:col-span-9 lg:col-span-10">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.Product_id}
-                product={product}
-              />
+            {filteredMenProducts.map((item) => (
+              <ProductCard key={item.Product_id} product={item} />
             ))}
           </div>
         </div>
       </div>
 
-      {/* MOBILE FILTER DRAWER */}
+      {/* =======================
+          MOBILE FILTER DRAWER
+          (REUSES SAME FILTERSIDEBAR)
+      ======================= */}
       <MobileFilterDrawer
         open={openFilter}
         onClose={() => setOpenFilter(false)}
       >
         <FilterSidebar
-          products={data}
+          products={menProducts}
           filters={filters}
           setFilters={setFilters}
         />
@@ -126,4 +144,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Men;

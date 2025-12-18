@@ -1,9 +1,9 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Loader2, SlidersHorizontal } from "lucide-react";
-import ProductCard from "../products/ProductCard";
-import BeautyFilterSidebar from "./BeautyFilterSidebar";
-import MobileFilterDrawer from "../../components/MobileFilterDrawer";
-import { useGetallBeautyProductsQuery } from "../../services/BeautyApi/beautyApi";
+import ProductCard from "../components/products/ProductCard";
+import BeautyFilterSidebar from "../components/filters/BeautyFilterSidebar";
+import MobileFilterDrawer from "../components/filters/MobileFilterDrawer";
+import { useGetallBeautyProductsQuery } from "../services/beautyApi/beautyApi";
 
 function BeautyProducts() {
   const { isLoading, data } = useGetallBeautyProductsQuery();
@@ -36,19 +36,17 @@ function BeautyProducts() {
 
     const result = [];
 
-    Object.entries(data.categories).forEach(
-      ([categoryName, brandGroups]) => {
-        brandGroups.forEach((group) => {
-          group.products.forEach((product) => {
-            result.push({
-              ...product,
-              brand: group.brand,
-              category: categoryName,
-            });
+    Object.entries(data.categories).forEach(([categoryName, brandGroups]) => {
+      brandGroups.forEach((group) => {
+        group.products.forEach((product) => {
+          result.push({
+            ...product,
+            brand: group.brand,
+            category: categoryName,
           });
         });
-      }
-    );
+      });
+    });
 
     return result;
   }, [data]);
@@ -59,15 +57,13 @@ function BeautyProducts() {
   const filteredBeautyProducts = useMemo(() => {
     return beautyProducts.filter((p) => {
       const brandMatch =
-        filters.brands.length === 0 ||
-        filters.brands.includes(p.brand);
+        filters.brands.length === 0 || filters.brands.includes(p.brand);
 
       const categoryMatch =
         filters.categories.length === 0 ||
         filters.categories.includes(p.category);
 
-      const priceMatch =
-        !filters.price || p.discountPrice <= filters.price;
+      const priceMatch = !filters.price || p.discountPrice <= filters.price;
 
       return brandMatch && categoryMatch && priceMatch;
     });

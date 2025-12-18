@@ -1,6 +1,6 @@
 import { Heart } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleWishlist } from "./wishlistSlice";
+import { toggleWishlist } from "../../features/wishlist/wishlistSlice";
 import { getProductId } from "../../utils/getProductId";
 
 function WishlistButton({ product }) {
