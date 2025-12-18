@@ -1,18 +1,22 @@
 import React, { useMemo } from "react";
 
 function BeautyFilterSidebar({ products, filters, setFilters }) {
-  // unique brands
+  /* ================================
+     UNIQUE BRANDS & CATEGORIES
+     ================================ */
   const brands = useMemo(
     () => [...new Set(products.map((p) => p.brand))],
     [products]
   );
 
-  // unique categories
   const categories = useMemo(
     () => [...new Set(products.map((p) => p.category))],
     [products]
   );
 
+  /* ================================
+     FILTER HANDLERS
+     ================================ */
   const toggleBrand = (brand) => {
     setFilters((prev) => ({
       ...prev,
@@ -39,44 +43,130 @@ function BeautyFilterSidebar({ products, filters, setFilters }) {
   };
 
   return (
-    <div className="border rounded-lg p-4 bg-white">
-      <h3 className="font-semibold mb-4">FILTERS</h3>
+    <div
+      className="
+        bg-white
+        border
+        rounded-lg
+        p-4
+        md:p-5
+        shadow-sm
+      "
+    >
+      {/* 
+        p-4 → mobile padding
+        md:p-5 → slightly more space on desktop
+        shadow-sm → subtle elevation like Myntra
+      */}
 
-      {/* Brand */}
+      {/* ================================
+         FILTER TITLE
+         ================================ */}
+      <h3 className="font-semibold text-sm md:text-base mb-4">
+        FILTERS
+      </h3>
+
+      {/* ================================
+         BRAND FILTER
+         ================================ */}
       <div className="mb-6">
-        <h4 className="font-medium mb-2">Brand</h4>
-        {brands.map((brand) => (
-          <label key={brand} className="flex gap-2 text-sm mb-1">
-            <input
-              type="checkbox"
-              checked={filters.brands.includes(brand)}
-              onChange={() => toggleBrand(brand)}
-            />
-            {brand}
-          </label>
-        ))}
+        <h4 className="font-medium text-sm mb-3">
+          Brand
+        </h4>
+
+        <div
+          className="
+            space-y-2
+            max-h-40
+            overflow-y-auto
+            pr-1
+          "
+        >
+          {/* 
+            max-h + overflow-y-auto
+            → prevents long brand lists from stretching page
+          */}
+          {brands.map((brand) => (
+            <label
+              key={brand}
+              className="
+                flex
+                items-center
+                gap-2
+                text-sm
+                cursor-pointer
+                hover:text-pink-600
+              "
+            >
+              <input
+                type="checkbox"
+                className="accent-pink-600"
+                checked={filters.brands.includes(brand)}
+                onChange={() => toggleBrand(brand)}
+              />
+              <span className="truncate">
+                {brand}
+              </span>
+            </label>
+          ))}
+        </div>
       </div>
 
-      {/* Category */}
+      {/* ================================
+         CATEGORY FILTER
+         ================================ */}
       <div className="mb-6">
-        <h4 className="font-medium mb-2">Category</h4>
-        {categories.map((category) => (
-          <label key={category} className="flex gap-2 text-sm mb-1">
-            <input
-              type="checkbox"
-              checked={filters.categories.includes(category)}
-              onChange={() => toggleCategory(category)}
-            />
-            {category}
-          </label>
-        ))}
+        <h4 className="font-medium text-sm mb-3">
+          Category
+        </h4>
+
+        <div className="space-y-2">
+          {categories.map((category) => (
+            <label
+              key={category}
+              className="
+                flex
+                items-center
+                gap-2
+                text-sm
+                cursor-pointer
+                hover:text-pink-600
+              "
+            >
+              <input
+                type="checkbox"
+                className="accent-pink-600"
+                checked={filters.categories.includes(category)}
+                onChange={() => toggleCategory(category)}
+              />
+              <span className="capitalize">
+                {category}
+              </span>
+            </label>
+          ))}
+        </div>
       </div>
 
-      {/* Price */}
+      {/* ================================
+         PRICE FILTER
+         ================================ */}
       <div>
-        <h4 className="font-medium mb-2">Price</h4>
+        <h4 className="font-medium text-sm mb-3">
+          Price
+        </h4>
+
         <select
-          className="w-full border rounded px-2 py-1 text-sm"
+          className="
+            w-full
+            border
+            rounded-md
+            px-3
+            py-2
+            text-sm
+            focus:outline-none
+            focus:ring-2
+            focus:ring-pink-500
+          "
           value={filters.price ?? "all"}
           onChange={handlePriceChange}
         >

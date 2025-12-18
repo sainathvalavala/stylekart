@@ -73,6 +73,7 @@ const cartSlice = createSlice({
        - Merges quantity if item already exists
     ===================================================== */
     addToCart: (state, action) => {
+      //payload = incoming product after clicking add to cart
       const product = action.payload;
 
       // 🔑 Unified ID for all product types

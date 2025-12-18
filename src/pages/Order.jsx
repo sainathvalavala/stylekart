@@ -47,16 +47,16 @@ function Order() {
 
           {/* Shipped */}
           <StatusItem
-            icon={<Truck className="text-gray-400" />}
+            icon={<Truck className="text-yellow-400" />}
             title="Shipped"
             desc="Out for delivery"
           />
 
           {/* Delivered */}
           <StatusItem
-            icon={<Home className="text-gray-400" />}
+            icon={<Home className="text-yellow-400" />}
             title="Delivered"
-            desc="Expected in 2–3 days"
+            desc="Expected in 2-3 days"
           />
         </div>
       </div>

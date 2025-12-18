@@ -2,17 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 🔥 Kill horizontal scrollbar visuals everywhere */
-/* html, body {
+/* ------------------------------
+   Global layout safety fixes
+------------------------------ */
+
+html,
+body {
   overflow-x: hidden;
-} */
+}
 
-/* Hide scrollbar UI (Windows Chrome issue) */
-/* * {
-  scrollbar-width: none;       
-} */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-/* *::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-} */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+}

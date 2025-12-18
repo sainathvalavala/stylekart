@@ -1,10 +1,17 @@
-import React, { useMemo, useState } from "react";
-import { useGetAllProductsQuery } from "../../services/productsApi";
+import React, { useMemo, useState, useEffect } from "react";
+import { useGetAllProductsQuery } from "../../services/ProductsApi/productsApi";
+import { Loader2, SlidersHorizontal } from "lucide-react";
 import ProductCard from "../products/ProductCard";
 import FilterSidebar from "../filter/FilterSidebar";
+import MobileFilterDrawer from "../../components/MobileFilterDrawer";
 
 function Women() {
   const { isLoading, data } = useGetAllProductsQuery();
+
+  const womenProducts = useMemo(
+    () => data?.filter((p) => p.category_by_Gender === "Women") || [],
+    [data]
+  );
 
   const [filters, setFilters] = useState({
     brands: [],
@@ -12,17 +19,14 @@ function Women() {
     price: null,
   });
 
-  // 1️⃣ Only WOMEN products
-  const womenProducts = useMemo(() => {
-    return (
-      data?.filter(
-        (product) => product.category_by_Gender === "Women"
-      ) || []
-    );
-  }, [data]);
+  const [openFilter, setOpenFilter] = useState(false);
 
-  // 2️⃣ Apply filters on WOMEN products
-  const filteredWomenProducts = useMemo(() => {
+  useEffect(() => {
+    document.body.style.overflow = openFilter ? "hidden" : "auto";
+    return () => (document.body.style.overflow = "auto");
+  }, [openFilter]);
+
+  const filteredProducts = useMemo(() => {
     return womenProducts.filter((p) => {
       const brandMatch =
         filters.brands.length === 0 ||
@@ -40,18 +44,30 @@ function Women() {
     });
   }, [womenProducts, filters]);
 
-  // 3️⃣ Conditional return AFTER hooks
   if (isLoading) {
-    return <h2 className="text-center mt-10">Loading...</h2>;
+    return (
+      <div className="flex justify-center items-center h-[60vh]">
+        <Loader2 className="w-10 h-10 text-pink-600 animate-spin" />
+      </div>
+    );
   }
 
   return (
-    <div className="px-6 md:px-12 py-8 bg-gray-50">
-      <h2 className="text-xl font-semibold mb-6">Women</h2>
+    <div className="px-4 md:px-12 bg-gray-50">
+      <h2 className="text-xl font-semibold mb-4">Women</h2>
+
+      <div className="flex justify-end mb-4 md:hidden">
+        <button
+          onClick={() => setOpenFilter(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-white border rounded-full text-sm"
+        >
+          <SlidersHorizontal size={16} />
+          Filters
+        </button>
+      </div>
 
       <div className="grid grid-cols-12 gap-6">
-        {/* LEFT FILTER */}
-        <div className="col-span-12 md:col-span-3 lg:col-span-2">
+        <div className="hidden md:block md:col-span-3 lg:col-span-2">
           <FilterSidebar
             products={womenProducts}
             filters={filters}
@@ -59,72 +75,30 @@ function Women() {
           />
         </div>
 
-        {/* RIGHT PRODUCTS */}
         <div className="col-span-12 md:col-span-9 lg:col-span-10">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {filteredWomenProducts.map((item) => (
+            {filteredProducts.map((product) => (
               <ProductCard
-                key={item.Product_id}
-                product={item}
+                key={product.Product_id}
+                product={product}
               />
             ))}
           </div>
         </div>
       </div>
+
+      <MobileFilterDrawer
+        open={openFilter}
+        onClose={() => setOpenFilter(false)}
+      >
+        <FilterSidebar
+          products={womenProducts}
+          filters={filters}
+          setFilters={setFilters}
+        />
+      </MobileFilterDrawer>
     </div>
   );
 }
 
 export default Women;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import { useGetAllProductsQuery } from "../../services/productsApi";
-// import ProductCard from "../products/ProductCard";
-// function Women() {
-//   const { isLoading, data } = useGetAllProductsQuery();
-
-//   if (isLoading) {
-//     return <h2>Loading...</h2>;
-//   }
-
-//   const womenProducts = data?.filter(
-//     (product) => product.category_by_Gender === "Women"
-//   );
-
-//   return (
-//     <div className="px-6 md:px-12 py-8 bg-gray-50">
-//       <h2 className="text-xl font-semibold mb-6">Woen</h2>
-
-//       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-//         {womenProducts.map((item) => (
-//           <ProductCard key={item.Product_id} product={item} />
-//         ))}
-//       </div>
-//     </div>
-
-    // <div>
-    //   <ul>
-    //     {menProducts?.map((menProduct) => (
-
-    //       <MenCard key={menProduct.Product_id} menProduct={menProduct}/>
-    //     ))}
-    //   </ul>
-    // </div>
-//   );
-// }
-
-// export default Women;

@@ -349,9 +349,7 @@ function Cart() {
               <button
                 onClick={() => {
                   dispatch(removeFromCart(item.id));
-                  toast.warn("Item removed from bag", {
-                    icon: "🗑️",
-                  });
+                  toast.warn("Item removed from bag");
                 }}
                 className="text-xs text-pink-600 font-semibold"
               >

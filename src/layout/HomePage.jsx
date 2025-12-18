@@ -3,7 +3,7 @@ import Slider from "../pages/Slider";
 import ShopCategory from "../pages/ShopCategory";
 import Footer from "../pages/Footer";
 
-function Home() {
+function HomePage() {
   return (
     <div>
       <Slider />
@@ -13,4 +13,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;

@@ -6,12 +6,13 @@ import { store } from "./app/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Products from "./features/products/Products.jsx";
 import Men from "./features/men/Men.jsx";
-import Home from "./layout/Home.jsx";
 import Women from "./features/women/Women.jsx";
 import Cart from "./features/cart/Cart.jsx";
-import Order from "./components/Order.jsx";
+import Order from "./pages/Order.jsx";
 import Kids from "./features/kids/Kids.jsx";
 import BeautyProducts from "./features/beautyProducts/BeautyProducts.jsx";
+import HomePage from "./layout/HomePage.jsx";
+import Wishlist from "./features/wishlist/Wishlist.jsx";
 
 
 const router = createBrowserRouter([
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
       {
         //When user visits "/:" <App /> renders <Slider /> renders inside <Outlet />
         index: true,
-        element: <Home />,
+        element: <HomePage />,
       },
       {
         path: "products",
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "wishlist",
+        element: <Wishlist/>,
       },
       {
         path: "order",
