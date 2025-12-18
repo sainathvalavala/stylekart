@@ -2,7 +2,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define a service using a base URL and expected endpoints
-export const HomePageApi = createApi({
+export const homePageApi = createApi({
   reducerPath: "HomePageApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://sainathvalavala.github.io/myntraApi/",
@@ -16,4 +16,4 @@ export const HomePageApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetHomePageQuery } = HomePageApi;
+export const { useGetHomePageQuery } = homePageApi;
