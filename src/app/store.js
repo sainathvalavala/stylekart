@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { productsApi } from "../services/productsApi/productsApi.js";
-import { HomePageApi } from "../services/homePageApi/homePageApi.js";
+import { homePageApi } from "../services/homePageApi/homePageApi.js";
 import cartReducer from "../features/cart/cartSlice.js";
 import { kidsApi } from "../services/kidsApi/kidsApi.js";
 import { beautyApi } from "../services/beautyApi/beautyApi.js";
@@ -11,14 +11,14 @@ export const store = configureStore({
     cart: cartReducer,
     wishlist: wishlistReducer,
     [productsApi.reducerPath]: productsApi.reducer,
-    [HomePageApi.reducerPath]: HomePageApi.reducer,
+    [homePageApi.reducerPath]: homePageApi.reducer,
     [kidsApi.reducerPath]: kidsApi.reducer,
     [beautyApi.reducerPath]: beautyApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       productsApi.middleware,
-      HomePageApi.middleware,
+      homePageApi.middleware,
       kidsApi.middleware,
       beautyApi.middleware
     ),
