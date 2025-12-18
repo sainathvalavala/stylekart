@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productsApi } from "../services/productsApi/productsApi";
-import { HomePageApi } from "../services/homePageApi/homePageApi";
-import cartReducer from "../features/cart/cartSlice";
-import { kidsApi } from "../services/kidsApi/KidsApi";
-import { beautyApi } from "../services/beautyApi/beautyApi";
+import { productsApi } from "../services/productsApi/productsApi.js";
+import { HomePageApi } from "../services/homePageApi/homePageApi.js";
+import cartReducer from "../features/cart/cartSlice.js";
+import { kidsApi } from "../services/kidsApi/kidsApi.js";
+import { beautyApi } from "../services/beautyApi/beautyApi.js";
 
-import wishlistReducer from "../features/wishlist/wishlistSlice";
+import wishlistReducer from "../features/wishlist/wishlistSlice.js";
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
