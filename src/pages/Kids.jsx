@@ -1,9 +1,9 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Loader2, SlidersHorizontal } from "lucide-react";
-import ProductCard from "../components/products/ProductCard"
+import ProductCard from "../components/products/ProductCard";
 import KidsFilterSidebar from "../components/filters/KidsFilterSidebar";
-import MobileFilterDrawer from "../components/filters/MobileFilterDrawer"
-import { useGetAllClothesQuery } from "../services/kidsApi/KidsApi";
+import MobileFilterDrawer from "../components/filters/MobileFilterDrawer";
+import { useGetAllClothesQuery } from "../services/kidsApi/kidsApi";
 
 function Kids() {
   const { isLoading, data } = useGetAllClothesQuery();
@@ -44,15 +44,13 @@ function Kids() {
   const filteredKidsProducts = useMemo(() => {
     return kidsProducts.filter((p) => {
       const brandMatch =
-        filters.brands.length === 0 ||
-        filters.brands.includes(p.brand);
+        filters.brands.length === 0 || filters.brands.includes(p.brand);
 
       const categoryMatch =
         filters.categories.length === 0 ||
         filters.categories.includes(p.category);
 
-      const priceMatch =
-        !filters.price || p.price <= filters.price;
+      const priceMatch = !filters.price || p.price <= filters.price;
 
       return brandMatch && categoryMatch && priceMatch;
     });

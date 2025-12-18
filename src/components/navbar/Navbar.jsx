@@ -11,31 +11,37 @@ function Navbar() {
     0
   );
 
+  // ✅ Separate label & path (IMPORTANT)
+  const navItems = [
+    { label: "Men", path: "men" },
+    { label: "Women", path: "women" },
+    { label: "Men & Women", path: "men-&-women" },
+    { label: "Kids", path: "kids" },
+    { label: "Beauty", path: "beauty" },
+  ];
+
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        {/* ↓ reduced height on mobile */}
         <div className="flex items-center justify-between h-16 md:h-20">
+          
           {/* LEFT: Logo + Categories */}
           <div className="flex items-center gap-8 md:gap-12">
             {/* Logo */}
             <Link
               to="/"
               className="text-xl md:text-2xl font-bold tracking-wide text-pink-600"
-              style={{
-                fontFamily: "Playfair Display",
-                fontWeight: "600",
-              }}
+              style={{ fontFamily: "Playfair Display", fontWeight: 600 }}
             >
               STYLEKART
             </Link>
 
             {/* Categories (desktop only) */}
             <ul className="hidden md:flex items-center gap-8 text-sm font-semibold uppercase text-gray-800">
-              {["men", "women", "men & women","kids", "beauty"].map((item) => (
-                <li key={item} className="relative group">
+              {navItems.map(({ label, path }) => (
+                <li key={path} className="relative group">
                   <NavLink
-                    to={`/${item}`}
+                    to={`/${path}`}
                     className={({ isActive }) =>
                       `pb-2 transition-colors ${
                         isActive
@@ -44,7 +50,7 @@ function Navbar() {
                       }`
                     }
                   >
-                    {item}
+                    {label}
                   </NavLink>
 
                   {/* underline */}
@@ -74,6 +80,7 @@ function Navbar() {
               )}
             </Link>
           </div>
+
         </div>
       </div>
     </nav>
