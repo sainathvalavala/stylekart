@@ -120,7 +120,7 @@ function Men() {
         <div className="col-span-12 md:col-span-9 lg:col-span-10">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {filteredMenProducts.map((item) => (
-              <ProductCard key={item.Product_id} product={item} />
+              <ProductCard key={item.Product_id} product={item} type="men" />
             ))}
           </div>
         </div>
@@ -140,6 +140,10 @@ function Men() {
           setFilters={setFilters}
         />
       </MobileFilterDrawer>
+
+
+      {/* view items page */}
+      
     </div>
   );
 }

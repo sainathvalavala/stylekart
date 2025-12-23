@@ -14,6 +14,7 @@ import BeautyProducts from "./pages/BeautyProducts.jsx";
 import HomePage from "./pages/Home.jsx";
 import Wishlist from "./pages/wishlist.jsx";
 import Products from "./components/products/Products.jsx";
+import ProductDetails from "./pages/ProductDeatils.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "wishlist",
         element: <Wishlist />,
+      },
+      {
+        path: "product/:type/:id",
+        element: <ProductDetails />,
       },
       {
         path: "order",
