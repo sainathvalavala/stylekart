@@ -21,6 +21,7 @@ The app integrates **real Myntra APIs** to fetch detailed product data and **hig
 
 ▶️ Mobile-responsive demo highlighting navigation, filtering, and optimized UI for smaller screens.
 
+
 ## 🚀 Project Overview
 
 Stylekart demonstrates a **production-style frontend architecture** using **Redux Toolkit + RTK Query** to manage global state and fetch data from **multiple real-world APIs**.
