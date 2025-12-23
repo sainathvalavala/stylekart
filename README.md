@@ -10,14 +10,14 @@ The app integrates **real Myntra APIs** to fetch detailed product data and **hig
 ## 🎥 Demo Videos
 
 ### 🖥 Desktop View
-[![Stylekart Desktop Demo](public/screenshots/stylekart-desktop.png)](https://youtu.be/kqm2gwXwneI)
+[![Stylekart Desktop Demo](screenshots/stylekart-desktop.png)](https://youtu.be/kqm2gwXwneI)
 
 ▶️ Desktop demo showcasing product browsing, filtering logic, product details, and cart flow using real Myntra APIs.
 
 ---
 
 ### 📱 Mobile View
-[![Stylekart Mobile Demo](public/screenshots/stylekart-mobile.png)](https://www.youtube.com/shorts/uB0zGP71XQI)
+[![Stylekart Mobile Demo](screenshots/stylekart-mobile.png)](https://www.youtube.com/shorts/uB0zGP71XQI)
 
 ▶️ Mobile-responsive demo highlighting navigation, filtering, and optimized UI for smaller screens.
 
