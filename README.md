@@ -1,16 +1,184 @@
-# React + Vite
+# Stylekart 🛍️👗
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Stylekart** is a fully responsive fashion e-commerce web application inspired by Myntra, built using **React.js** and **Redux Toolkit**.  
+The app integrates **real Myntra APIs** to fetch detailed product data and **high-resolution images** across multiple categories.
 
-Currently, two official plugins are available:
+🌐 Live Demo: https://stylekart-fashion-sainath.vercel.app/  
+🔗 Myntra API Repo: https://github.com/sainathvalavala/myntraApi
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+## 🎥 Demo Videos
 
-## React Compiler
+### 🖥 Desktop View
+[![Stylekart Desktop Demo](public/screenshots/stylekart-desktop.png)](https://youtu.be/kqm2gwXwneI)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+▶️ Desktop demo showcasing product browsing, filtering logic, product details, and cart flow using real Myntra APIs.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 📱 Mobile View
+[![Stylekart Mobile Demo](public/screenshots/stylekart-mobile.png)](https://www.youtube.com/shorts/uB0zGP71XQI)
+
+▶️ Mobile-responsive demo highlighting navigation, filtering, and optimized UI for smaller screens.
+
+## 🚀 Project Overview
+
+Stylekart demonstrates a **production-style frontend architecture** using **Redux Toolkit + RTK Query** to manage global state and fetch data from **multiple real-world APIs**.
+
+The application is **fully responsive**, delivering a seamless shopping experience across **mobile, tablet, and desktop** devices.
+
+---
+
+## 🛠 Tech Stack
+
+- **React.js** – Component-based UI development  
+- **Redux Toolkit** – Centralized state management  
+- **RTK Query** – API fetching, caching & synchronization  
+- **React Router** – Client-side routing  
+- **Tailwind CSS** – Responsive, utility-first styling  
+- **Vercel** – Deployment & hosting  
+
+---
+
+## 🔄 Real Myntra API Integration
+
+Stylekart consumes **real Myntra APIs** from a custom API service:
+
+🔗 https://github.com/sainathvalavala/myntraApi
+
+### APIs Used:
+- 👔 Men’s fashion products  
+- 👗 Women’s fashion products  
+- 🧒 Kids’ clothing  
+- 💄 Beauty & personal care products  
+
+### API Highlights:
+✔ Real Myntra product data  
+✔ High-resolution product images  
+✔ Pricing, discounts & ratings  
+✔ Category & gender-based APIs  
+✔ Optimized for frontend consumption  
+
+---
+
+## 🧠 State Management & Data Flow
+
+Redux Toolkit with RTK Query is used to:
+
+- Fetch data from **multiple Myntra APIs**
+- Cache responses to improve performance
+- Prevent unnecessary network requests
+- Maintain clean, scalable, and reusable architecture
+- Separate UI logic from data handling
+
+---
+
+## 📱 Responsive Design
+
+Stylekart is **fully responsive** and optimized for:
+
+- 📱 Mobile devices  
+- 📲 Tablets  
+- 🖥 Desktop screens  
+
+Responsive behavior is achieved using:
+- Tailwind CSS responsive utilities
+- Flexible grid layouts
+- Mobile-first design approach
+
+---
+
+## ✨ Key Features
+- Fully responsive e-commerce UI
+- Real Myntra API integration with high-resolution images
+- Category-wise product listings (Men, Women, Kids, Beauty)
+- Dynamic filtering by brand, category, and price
+- Reusable filter components
+- Redux-powered cart & wishlist
+- Optimized state management with RTK Query
+
+
+---
+
+## 📁 Project Structure
+
+```bash
+stylekart/
+├── node_modules/
+├── public/
+├── src/
+│   ├── app/
+│   │   └── store.js                 # Redux store configuration
+│   │
+│   ├── assets/                      # Images & static assets
+│   │
+│   ├── components/                 # Reusable UI components
+│   │   ├── bottomBar/
+│   │   ├── filters/
+│   │   ├── footer/
+│   │   ├── home/
+│   │   ├── navbar/
+│   │   ├── products/
+│   │   └── wishlist/
+│   │
+│   ├── features/                   # Redux Toolkit feature slices
+│   │   ├── cart/
+│   │   │   └── cartSlice.js
+│   │   └── wishlist/
+│   │
+│   ├── pages/                      # Route-based pages
+│   │   ├── Home.jsx
+│   │   ├── Men.jsx
+│   │   ├── Women.jsx
+│   │   ├── Kids.jsx
+│   │   ├── BeautyProducts.jsx
+│   │   ├── ProductDetails.jsx
+│   │   ├── Cart.jsx
+│   │   └── Wishlist.jsx
+│   │
+│   ├── services/                   # RTK Query API services
+│   │   ├── beautyApi/
+│   │   ├── homePageApi/
+│   │   ├── kidsApi/
+│   │   └── productsApi/
+│   │
+│   ├── utils/                      # Helper utilities
+│   │   └── getProductId.js
+│   │
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx                    # App entry point
+│
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.config.js
+├── vite.config.js
+└── README.md
+```
+
+This project follows a feature-based architecture using Redux Toolkit and RTK Query,
+ensuring scalability, clean separation of concerns, and efficient API management.
+
+
+## ⚙️ Getting Started
+
+Follow these steps to run the project locally on your machine.
+
+### Clone the Repository
+```bash
+git clone https://github.com/sainathvalavala/stylekart.git
+cd stylekart
+```
+### Install Dependencies
+```bash
+npm install
+```
+### Start the development Server
+```bash
+npm run dev
+```
+
